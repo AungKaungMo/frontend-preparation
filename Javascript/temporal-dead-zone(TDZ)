@@ -1,0 +1,11 @@
+Temporal Dead Zone ဆိုတာဘာလဲ?
+
+Temporal Dead Zone ဆိုတာ let နဲ့ const variables တွေ declaration line ကိုမရောက်မီ access လုပ်လို့မရတဲ့အချိန်အပိုင်းအခြားကိုပြောတာပါ
+
+ဥပမာ
+
+// TDZ start here
+
+console.log(name) // ReferenceError cannot access name
+
+name = "Aung Aung" // TDZ end 
