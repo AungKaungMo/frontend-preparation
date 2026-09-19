@@ -1,0 +1,51 @@
+useCallback ဆိုတာ React မှာ Parent Component တစ်ခု Render ဖြစ်သွားတဲ့အခါ Child Component ဆီ ပို့ပေးလိုက်တဲ့ Function တွေကို မလိုအပ်ဘဲ Memory ထဲမှာ Re-createလုပ်အောင် Function Reference ကို Cache ပေးထားတဲ့ Hook ဖြစ်ပါတယ်။
+
+App.jsx မှာ တခြား State တစ်ခုဖြစ်တဲ့ newCount ပြောင်းလဲသွားတဲ့အခါ App တစ်ခုလုံး Render ပြန်ဖြစ်ပါမယ်။ အဲ့ဒီအချိန်မှာ handleCount function သာ useCallback မပါရင် Function Reference အသစ် ပြန်ဖြစ်သွားပြီး Counter component ပါ လိုက်ပြီး မလိုအပ်ဘဲ Render ဖြစ်သွားပါလိမ့်မယ်။
+
+ဒါကြောင့် useCallback နဲ့ React.memo ကို တွဲသုံးလိုက်ခြင်းအားဖြင့် newCount ဘယ်လောက်ပဲ ပြောင်းပြောင်း Counter component က မလိုအပ်ဘဲ Render ပြန်ဖြစ်တော့မှာ မဟုတ်ပါဘူး။ (count State ကိုယ်တိုင် ပြောင်းလဲမှသာ Counter က Render ပြန်ဖြစ်ပါလိမ့်မည်။)
+
+
+In App.jsx
+import { useCallback, useState } from 'react'
+import Counter from './Counter'
+
+function App() {
+  const [count, setCount] = useState(0)
+  const [newCount, setNewCount] = useState(0)
+
+  const handleCount = useCallback((number) => {
+    setCount(prevCount => prevCount + number)
+  }, [])
+
+  const handleNewCount = () => {
+    setNewCount(prevCount => prevCount + 1)
+  }
+
+  return (
+    <>
+      <Counter count={count} increaseCount={handleCount} />
+      <br />
+      <button onClick={handleNewCount}>New Count</button>
+      New Count: {newCount}
+    </>
+  )
+}
+
+export default App
+
+In Counter.jsx
+
+import { memo } from "react";
+
+const Counter = memo((props) => {
+    console.log('Counter Rendering...'); // Debug လုပ်ကြည့်ရန်
+    return (
+      <div>
+        Old Count : {props.count}
+        <button onClick={() => props.increaseCount(2)}>Increase Count++</button>
+      </div>
+    );
+});
+
+export default Counter;
+
