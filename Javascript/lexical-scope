@@ -1,0 +1,33 @@
+Lexical Scope ဆိုတာဘာလဲ?
+
+Lexical Scope ဆိုတာ code ရေးသားထားတဲ့နေရာတွေပေါ်မူတည်ပြီးတော့ variable တွေကိုဘယ်နေရာတွေကနေခေါ်သုံးခွင့်ရှိမလဲဆိုတာသတ်မှတ်ပေးတဲ့နည်းပဲဖြစ်ပါတယ်
+
+Lexical Scope ရဲ့ အဓိက သဘောတရားများ
+
+၁။ Inner Scope မှ Outer Scope သို့ ရှာဖွေနိုင်ခြင်း
+
+   Inner function သည်အပြင်မှာရှိတဲ့ Outer function ရဲ့ variable တွေကိုလှမ်းယူသုံးစွဲနိုင်ပါတယ်
+
+၂။ Outer Scope မှ Inner Scope သို့ လှမ်းယူမရခြင်း
+
+   Outer function မှာရှိတဲ့ code က Inner function အထဲမှာရှိတဲ့ variable တွေကိုယူသုံးခွင့်မရှိပါဘူး
+
+Example Code:
+
+let globalVar = "Global";
+
+function outerFunction() {
+  let outerVar = "Outer";
+
+  function innerFunction() {
+    let innerVar = "Inner";
+
+    console.log(globalVar); // Output: "Global"
+    console.log(outerVar);  // Output: "Outer"
+    console.log(innerVar);  // Output: "Inner"
+  }
+  innerFunction();
+  console.log(innerVar); // ❌ ERROR! innerVar ကို အပြင်ကနေ လှမ်းယူလို့ မရပါ
+}
+outerFunction();
+
