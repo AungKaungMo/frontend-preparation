@@ -1,0 +1,36 @@
+Closure ဆိုတာဘာလဲ?
+
+Closure ဆိုတာ Inner function တစ်ခုကအပြင်ဘကမှာရှိတဲ့ Outer function ရဲ့ variable တွေကိုမှတ်မိနေပြီးတော့ Outer function ရဲ့အလုပ်တွေပြီးသွားရင်တောင်မှ အဲ့ဒီ variable တွေကိုဆက်လက်သုံးစွဲခွင့်ရှိနေသေးတဲ့နည်းပဲဖြစ်ပါတယ်
+
+ဒါဆိုရင် Closure ကဘယ်လိုဖြစ်ပေါ်လာတာလဲ?
+
+Closure ဖြစ်လာဖို့ဆိုရင်အချက်၃ချက်လိုအပ်ပါတယ်
+
+၁။ Outer function တစ်ခုရှိရမယ်
+၂။ Outer ထဲမှာ Inner function ရှိရပါမယ်
+၃။ Inner က Outer ထဲက variable တစ်ခုခုကိုလှမ်းယူသုံးထားရပါယ် ပြီးရင် inner function ကို return ပြန်ပေးရပါမယ်
+
+Example code:
+
+function makeCounter() {
+    let count = 0;
+
+    return function() {
+        count++;
+        return count;
+    };
+}
+
+const counter = makeCounter(); // makeCounter() ရဲ့ အလုပ်လုပ် ပြီးသွားပါပြီ
+
+console.log(counter()); // Output: 1
+console.log(counter()); // Output: 2
+console.log(counter()); // Output: 3
+
+အဲ့ဒီမှာဘာဖြစ်သွားတာလဲဆိုရင် makeCounter() ရဲ့အလုပ်ကပြီးဆုံးသွားသလို count = 0 ဆိုတဲ့ variable ကလည်း memory ထဲကပျောက်သွားသင့်ပါတယ် ဒါပေမဲ့ Inner function က count ကိုသုံးထားတဲ့အတွက်ကြောင့်မလို့ closure ဖြစ်သွားပါတယ် ဒါကြောင့်လဲ count ရဲ့တန်ဖိုးကိုဆက်လက်မှတ်မိနေတာပါ
+
+Closure ကိုဘာအတွက်သုံးကြတာလဲ?
+
+Javascrip မှာ class တွေမပါခင်တုန်းကဆို variable အပြင်ကနေတိုက်ရိုက်လှမ်းမပြင်နိုင်အောင် closure ကိုသုံးကြပါတယ် 
+
+Event Handlers တွေ၊ Asynchronous Code တွေနဲ့ React Hooks (useState) တွေရဲ့ နောက်ကွယ်မှာ Closure သဘောတရားကို အဓိက အသုံးပြုထားပါသေးတယ်။
