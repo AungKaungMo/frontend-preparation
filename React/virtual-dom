@@ -1,0 +1,25 @@
+javascript မှာတုန်းကကျနော်တို့ကတစ်ခုခုကိုချိန်းလိုက်တဲ့အခါ text or ​anything changes ဖြစ်သွားတဲ့အခါ Real Dom ကိုပြန်ပြီး rendering update လုပ်ကြတယ် React ရဲ့ Virtual Dom မှာတော့ကျနော်တို့က element or node တခုကိုကျနော်တို့code ထဲရေးပြီးsaveလိုက်ပြီဆိုတာနဲ့ React က virtual dom တခုကိုဖန်တီးပေးတယ်အဲ့ဒီဖန်တီးလိုက်တဲ့ virtual dom နဲ့ရှိပြီးသား virtual dom ရဲ့ node တွေကိုတိုက်စစ်လိုက်လို့ node ရဲ့ parent ကပြောင်းလဲသွားတယ်ဆိုအဲ့ node တစ်ခုလုံးဖြတ်ချပြီးတော့ အသစ်ပြန်လုပ်ပေးတယ် ဥပမာ
+ 
+Old Dom
+<div>
+  <span> hello world 👋
+</div>
+
+New Dom
+<p>
+  <span> hello world 👋
+</p>
+
+ဒါဆိုရင် parent element တခုလုံးပြောင်းသွားတာဖြစ်တဲ့အတွက် nodeကို အသစ်ပြန်ဆောက်ပေးတယ်
+
+Old Dom
+<div className="text-white">
+  <span> hello world 👋
+</div>
+
+New Dom
+<div className="text-black">
+  <span> hello world 👋
+</div>
+
+ဒါဆိုရင် Dom ၂ခုတိုက်စစ်တော့ attribute ပဲချိန်းတာဖြစ်တဲ့အတွက် node တခုလုံးအသစ်ပြန်ဆောက်စရာမလိုတော့ပါဘူး attribute ကိုပဲ update လုပ်ပေးသွားမှာပါ React ကအဲ့လိုအပိုင်းလေးတွေခွဲပြီးတော့နောက်ဆုံးခါမှ Real Dom ကိုသွားပြီး update လုပ်ပါတယ် ပြီးတဲ့အခါမှာတော့ရှေ့က create လုပ်ထားတဲ့ Virtual Dom တွေကိုပြန်ဖျက်လိုက်ပါတယ် ဒီပုံစံနဲ့ React ရဲ့ Virtual Dom က performance optimize လုပ်ထားတာဖြစ်ပါတယ်
